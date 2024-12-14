@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>1899.12.30 00:00:00.000.614,D:\Embarcadero\Studio\Projects\PracticaWinter2024\Unit1.h=D:\Embarcadero\Studio\Projects\Unit1.h</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.602,D:\Embarcadero\Studio\Projects\PracticaWinter2024\Work_TimePCH1.h=D:\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.217,D:\Embarcadero\Studio\Projects\PracticaWinter2024\Work_Time.cbproj=D:\Embarcadero\Studio\Projects\PracticaWinter2024\Work_Time.cbproj</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.630,D:\Embarcadero\Studio\Projects\PracticaWinter2024\Work_Time.cbproj=D:\Embarcadero\Studio\Projects\Project1.cbproj</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.102,=D:\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.614,D:\Embarcadero\Studio\Projects\PracticaWinter2024\Unit1.cpp=D:\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.614,D:\Embarcadero\Studio\Projects\PracticaWinter2024\Unit1.dfm=D:\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.902,=D:\Embarcadero\Studio\Projects\PracticaWinter2024\Unit2.cpp</Transaction>
     <Transaction>1899.12.30 00:00:00.000.022,=D:\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.102,=D:\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.614,D:\Embarcadero\Studio\Projects\Unit1.cpp=D:\Embarcadero\Studio\Projects\PracticaWinter2024\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.630,D:\Embarcadero\Studio\Projects\Project1.cbproj=D:\Embarcadero\Studio\Projects\PracticaWinter2024\Work_Time.cbproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.602,D:\Embarcadero\Studio\Projects\Project1PCH1.h=D:\Embarcadero\Studio\Projects\PracticaWinter2024\Work_TimePCH1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.217,D:\Embarcadero\Studio\Projects\PracticaWinter2024\Work_Time.cbproj=D:\Embarcadero\Studio\Projects\PracticaWinter2024\Work_Time.cbproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.614,D:\Embarcadero\Studio\Projects\Unit1.h=D:\Embarcadero\Studio\Projects\PracticaWinter2024\Unit1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.614,D:\Embarcadero\Studio\Projects\Unit1.dfm=D:\Embarcadero\Studio\Projects\PracticaWinter2024\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.902,=D:\Embarcadero\Studio\Projects\PracticaWinter2024\Unit2.cpp</Transaction>
   </Transactions>
 </BorlandProject>

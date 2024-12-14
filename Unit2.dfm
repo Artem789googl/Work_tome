@@ -17,7 +17,7 @@ object EditForm: TEditForm
   object PageControl1: TPageControl
     Left = 44
     Top = 88
-    Width = 1029
+    Width = 1005
     Height = 498
     ActivePage = TabSheet2
     TabOrder = 0
@@ -89,8 +89,9 @@ object EditForm: TEditForm
     object TabSheet2: TTabSheet
       Caption = #1044#1086#1073#1072#1074#1083#1077#1085#1080#1077' '#1074#1088#1077#1084#1077#1085#1080
       ImageIndex = 1
+      OnShow = TabSheet2Show
       object Label9: TLabel
-        Left = 32
+        Left = 24
         Top = 19
         Width = 420
         Height = 37
@@ -102,24 +103,236 @@ object EditForm: TEditForm
         Font.Style = []
         ParentFont = False
       end
-      object Calendar1: TCalendar
-        Left = 60
-        Top = 198
-        Width = 320
-        Height = 120
-        StartOfWeek = 0
+      object Label10: TLabel
+        Left = 40
+        Top = 352
+        Width = 107
+        Height = 28
+        Caption = #1044#1086#1083#1078#1085#1086#1089#1090#1100':'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -20
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentFont = False
+      end
+      object Label11: TLabel
+        Left = 40
+        Top = 78
+        Width = 88
+        Height = 28
+        Caption = #1060#1072#1084#1080#1083#1080#1103':'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -20
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentFont = False
+      end
+      object Label12: TLabel
+        Left = 40
+        Top = 141
+        Width = 43
+        Height = 28
+        Caption = #1048#1084#1103':'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -20
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentFont = False
+      end
+      object Label13: TLabel
+        Left = 40
+        Top = 204
+        Width = 88
+        Height = 28
+        Caption = #1054#1090#1095#1077#1089#1090#1074#1086':'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -20
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentFont = False
+      end
+      object Label14: TLabel
+        Left = 40
+        Top = 267
+        Width = 190
+        Height = 28
+        Caption = #1044#1072#1090#1072' '#1085#1072#1095#1072#1083#1086' '#1088#1072#1073#1086#1090#1099':'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -20
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentFont = False
+      end
+      object Label15: TLabel
+        Left = 472
+        Top = 141
+        Width = 75
+        Height = 28
+        Caption = #1057#1090#1072#1090#1091#1089#1099':'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -20
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentFont = False
+      end
+      object Label16: TLabel
+        Left = 472
+        Top = 223
+        Width = 117
+        Height = 28
+        Caption = #1044#1072#1090#1072' '#1085#1072#1095#1072#1083#1086':'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -20
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentFont = False
+      end
+      object Label17: TLabel
+        Left = 472
+        Top = 290
+        Width = 103
+        Height = 28
+        Caption = #1044#1072#1090#1072' '#1082#1086#1085#1094#1072
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -20
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentFont = False
+      end
+      object Fam_ComboBox: TComboBox
+        Left = 40
+        Top = 112
+        Width = 145
+        Height = 23
         TabOrder = 0
-        UseCurrentDate = False
-        OnClick = Calendar1Click
+        Text = #1060#1072#1084#1080#1083#1080#1103
+        OnChange = Fam_ComboBoxChange
+      end
+      object Imya_ComboBox: TComboBox
+        Left = 40
+        Top = 175
+        Width = 145
+        Height = 23
+        TabOrder = 1
+        Text = #1048#1084#1103
+        OnChange = Imya_ComboBoxChange
+      end
+      object Otch_ComboBox: TComboBox
+        Left = 40
+        Top = 238
+        Width = 145
+        Height = 23
+        TabOrder = 2
+        Text = #1054#1090#1095#1077#1089#1090#1074#1086
+        OnChange = Otch_ComboBoxChange
+      end
+      object Date_ComboBox: TComboBox
+        Left = 40
+        Top = 311
+        Width = 145
+        Height = 23
+        TabOrder = 3
+        Text = #1044#1072#1090#1099
+        OnChange = Date_ComboBoxChange
+      end
+      object Status_ComboBox: TComboBox
+        Left = 472
+        Top = 175
+        Width = 155
+        Height = 23
+        TabOrder = 4
+        Text = #1042#1099#1073#1077#1088#1080#1090#1077' '#1089#1090#1072#1090#1091#1089
+        Items.Strings = (
+          #1054#1090#1087#1091#1089#1082
+          #1041#1086#1083#1100#1085#1080#1095#1085#1099#1081)
+      end
+      object DateStart_Calendar: TCalendarPicker
+        Left = 472
+        Top = 257
+        Width = 155
+        Height = 32
+        CalendarHeaderInfo.DaysOfWeekFont.Charset = DEFAULT_CHARSET
+        CalendarHeaderInfo.DaysOfWeekFont.Color = clWindowText
+        CalendarHeaderInfo.DaysOfWeekFont.Height = -17
+        CalendarHeaderInfo.DaysOfWeekFont.Name = 'Segoe UI'
+        CalendarHeaderInfo.DaysOfWeekFont.Style = []
+        CalendarHeaderInfo.Font.Charset = DEFAULT_CHARSET
+        CalendarHeaderInfo.Font.Color = clWindowText
+        CalendarHeaderInfo.Font.Height = -25
+        CalendarHeaderInfo.Font.Name = 'Segoe UI'
+        CalendarHeaderInfo.Font.Style = []
+        Color = clWindow
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clGray
+        Font.Height = -20
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 5
+        TextHint = 'select a date'
+      end
+      object DateEnd_Calendar: TCalendarPicker
+        Left = 472
+        Top = 324
+        Width = 155
+        Height = 32
+        CalendarHeaderInfo.DaysOfWeekFont.Charset = DEFAULT_CHARSET
+        CalendarHeaderInfo.DaysOfWeekFont.Color = clWindowText
+        CalendarHeaderInfo.DaysOfWeekFont.Height = -17
+        CalendarHeaderInfo.DaysOfWeekFont.Name = 'Segoe UI'
+        CalendarHeaderInfo.DaysOfWeekFont.Style = []
+        CalendarHeaderInfo.Font.Charset = DEFAULT_CHARSET
+        CalendarHeaderInfo.Font.Color = clWindowText
+        CalendarHeaderInfo.Font.Height = -25
+        CalendarHeaderInfo.Font.Name = 'Segoe UI'
+        CalendarHeaderInfo.Font.Style = []
+        Color = clWindow
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clGray
+        Font.Height = -20
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 6
+        TextHint = 'select a date'
+      end
+      object SaveDate_Button: TButton
+        Left = 501
+        Top = 384
+        Width = 126
+        Height = 41
+        Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -23
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 7
+        OnClick = SaveDate_ButtonClick
       end
     end
   end
   object BackButton: TButton
-    Left = 994
-    Top = 43
-    Width = 75
-    Height = 25
+    Left = 912
+    Top = 26
+    Width = 137
+    Height = 42
     Caption = #1042#1077#1088#1085#1091#1090#1100#1089#1103
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -20
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    ParentFont = False
     TabOrder = 1
     OnClick = BackButtonClick
   end

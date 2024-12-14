@@ -57,7 +57,22 @@ __published:	// IDE-managed Components
 	TTabSheet *TabSheet2;
 	TDataSource *DataSource2;
 	TLabel *Label9;
-	TCalendar *Calendar1;
+	TComboBox *Fam_ComboBox;
+	TComboBox *Imya_ComboBox;
+	TComboBox *Otch_ComboBox;
+	TComboBox *Date_ComboBox;
+	TLabel *Label10;
+	TLabel *Label11;
+	TLabel *Label12;
+	TLabel *Label13;
+	TLabel *Label14;
+	TComboBox *Status_ComboBox;
+	TLabel *Label15;
+	TCalendarPicker *DateStart_Calendar;
+	TCalendarPicker *DateEnd_Calendar;
+	TLabel *Label16;
+	TLabel *Label17;
+	TButton *SaveDate_Button;
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall FormDestroy(TObject *Sender);
 	void __fastcall ComboBox1Change(TObject *Sender);
@@ -72,7 +87,12 @@ __published:	// IDE-managed Components
 	void __fastcall Button_DeleteClick(TObject *Sender);
 	void __fastcall UpdateTableData();
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
-	void __fastcall Calendar1Click(TObject *Sender);
+	void __fastcall TabSheet2Show(TObject *Sender);
+	void __fastcall Fam_ComboBoxChange(TObject *Sender);
+	void __fastcall Otch_ComboBoxChange(TObject *Sender);
+	void __fastcall Imya_ComboBoxChange(TObject *Sender);
+	void __fastcall Date_ComboBoxChange(TObject *Sender);
+	void __fastcall SaveDate_ButtonClick(TObject *Sender);
 private:	// User declarations
         TDateTime StartDate;
     	TDateTime EndDate;

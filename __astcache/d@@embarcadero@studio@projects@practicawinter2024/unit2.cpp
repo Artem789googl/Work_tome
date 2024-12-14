@@ -348,34 +348,158 @@ void __fastcall TEditForm::UpdateTableData()
 		ShowMessage("Ошибка при обновлении данных: " + e.Message);
 	}
 }
+//---------------------------------------------------------------------------
 
-void __fastcall TEditForm::Calendar1Click(TObject *Sender)
+void __fastcall TEditForm::TabSheet2Show(TObject *Sender)
 {
-    // Если начальная дата не установлена, устанавливаем её как выбранную
-    if (StartDate.IsNull())
-    {
-        StartDate = Calendar1->SelectedDate;
-    }
-    else
-    {
-        // Если начальная дата уже установлена, устанавливаем конечную дату
-        EndDate = Calendar1->SelectedDate;
+	ADOQuery1->Close();
 
-        // Если конечная дата меньше начальной, меняем их местами
-        if (EndDate < StartDate)
-        {
-            TDateTime temp = StartDate;
-            StartDate = EndDate;
-            EndDate = temp;
+	AnsiString sql = "SELECT familiya FROM sotrudnuk";
+
+	ADOQuery1->SQL->Text = sql;
+	ADOQuery1->Open();
+
+	ComboBox1->Items->Clear();  // Очищаем ComboBox перед добавлением новых данных
+
+	while (!ADOQuery1->Eof) {	
+		AnsiString familiya = ADOQuery1->FieldByName("familiya")->AsString;
+		Fam_ComboBox->Items->Add(familiya);  // Добавляем фамилию в ComboBox
+		ADOQuery1->Next();
+	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TEditForm::Fam_ComboBoxChange(TObject *Sender)
+{
+	ADOQuery1->Close();
+
+	AnsiString sql = "SELECT imya FROM sotrudnuk where familiya = '" + Fam_ComboBox->Text +"'";
+
+	ADOQuery1->SQL->Text = sql;
+	ADOQuery1->Open();
+
+	while (!ADOQuery1->Eof) {	
+		AnsiString imay = ADOQuery1->FieldByName("imya")->AsString;
+		Imya_ComboBox->Items->Add(imay);  // Добавляем фамилию в ComboBox
+		ADOQuery1->Next();
+	}		
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TEditForm::Imya_ComboBoxChange(TObject *Sender)
+{
+	ADOQuery1->Close();
+
+	AnsiString sql = "SELECT otchestvo FROM sotrudnuk where familiya = '" + Fam_ComboBox->Text +"' and imya = '" + Imya_ComboBox->Text + "'";
+	ADOQuery1->SQL->Text = sql;
+	ADOQuery1->Open();
+
+	while (!ADOQuery1->Eof) {	
+		AnsiString otch = ADOQuery1->FieldByName("otchestvo")->AsString;
+		Otch_ComboBox->Items->Add(otch);  // Добавляем фамилию в ComboBox
+		ADOQuery1->Next();
+	}		
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TEditForm::Otch_ComboBoxChange(TObject *Sender)
+{
+	ADOQuery1->Close();
+
+	AnsiString sql = "SELECT data_nachalo_raboty FROM sotrudnuk where familiya = '" + Fam_ComboBox->Text +"' and imya = '" + Imya_ComboBox->Text + "' and otchestvo = '" + Otch_ComboBox->Text +"'";
+	ADOQuery1->SQL->Text = sql;
+	ADOQuery1->Open();
+
+	while (!ADOQuery1->Eof) {	
+		AnsiString data_nachalo_raboty = ADOQuery1->FieldByName("data_nachalo_raboty")->AsString;
+		Date_ComboBox->Items->Add(data_nachalo_raboty);  // Добавляем фамилию в ComboBox
+		ADOQuery1->Next();
+	}	
+}
+//---------------------------------------------------------------------------
+
+
+
+void __fastcall TEditForm::Date_ComboBoxChange(TObject *Sender)
+{
+
+	// Преобразуем её в объект TDateTime
+	TDateTime date = StrToDate(Date_ComboBox->Text);
+
+	// Преобразуем объект TDateTime в строку в формате 'YYYY-MM-DD'
+	AnsiString formattedDate = FormatDateTime("yyyy-mm-dd", date);
+	ADOQuery1->Close();
+
+	AnsiString sql = "SELECT nazvanie FROM sotrudnuk join dolzhnost on id_dolzhnost = dolzhnost_id_dolzhnost where familiya = '" +
+		Fam_ComboBox->Text +"' and imya = '" + 
+		Imya_ComboBox->Text + "' and otchestvo = '" + 
+		Otch_ComboBox->Text +"' and data_nachalo_raboty = '" + formattedDate 
+		+ "'";
+	ADOQuery1->SQL->Text = sql;
+	ADOQuery1->Open();
+
+	Label10->Caption = "Должность: " +  ADOQuery1->FieldByName("nazvanie")->AsString;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TEditForm::SaveDate_ButtonClick(TObject *Sender)
+{
+try {
+        // Получаем значения из ComboBox и других элементов формы
+        AnsiString familiya = Fam_ComboBox->Text;
+        AnsiString imya = Imya_ComboBox->Text;
+        AnsiString otchestvo = Otch_ComboBox->Text; // Может быть пустым
+        AnsiString dataNachalaRaboty = Date_ComboBox->Text; // Ожидается в формате DD.MM.YYYY
+        AnsiString status = Status_ComboBox->Text;
+		AnsiString dataNachala = DateToStr(DateStart_Calendar->Date); // Дата начала режима
+		AnsiString dataOkonchaniya = DateToStr(DateEnd_Calendar->Date); // Дата конца режима
+
+		// Форматируем даты для MySQL (YYYY-MM-DD)
+        TDateTime dateStart = StrToDate(dataNachala);
+        TDateTime dateEnd = StrToDate(dataOkonchaniya);
+        AnsiString formattedDataNachala = FormatDateTime("yyyy-mm-dd", dateStart);
+        AnsiString formattedDataOkonchaniya = FormatDateTime("yyyy-mm-dd", dateEnd);
+
+        TDateTime dateRaboty = StrToDate(dataNachalaRaboty);
+        AnsiString formattedDataNachalaRaboty = FormatDateTime("yyyy-mm-dd", dateRaboty);
+
+        // Находим ID сотрудника по фамилии, имени, отчеству и дате начала работы
+        ADOQuery1->Close();
+        ADOQuery1->SQL->Text = "SELECT id_sotrudnik FROM sotrudnuk WHERE familiya = '" + familiya +
+                               "' AND imya = '" + imya + "' AND (otchestvo = '" + otchestvo +
+                               "' OR '" + otchestvo + "' = '') AND data_nachalo_raboty = '" + formattedDataNachalaRaboty + "'";
+        ADOQuery1->Open();
+
+        if (ADOQuery1->RecordCount == 0) {
+            ShowMessage("Сотрудник не найден!");
+            return;
         }
-    }
 
-    // После того как обе даты выбраны, выделяем диапазон
-    if (!StartDate.IsNull() && !EndDate.IsNull())
-    {
-        Calendar1->ClearSelection(); // Сначала очищаем любые предыдущие выделения
-        Calendar1->SelectRange(StartDate, EndDate); // Выделяем диапазон
+        int sotrudnikID = ADOQuery1->FieldByName("id_sotrudnik")->AsInteger;
+
+        // Добавляем запись в таблицу rabochee_vremya
+        ADOQuery1->Close();
+        ADOQuery1->SQL->Text = "INSERT INTO rabochee_vremya (status, data_nachala, data_okonchaniya) VALUES ('" +
+                               status + "', '" + formattedDataNachala + "', '" + formattedDataOkonchaniya + "')";
+        ADOQuery1->ExecSQL();
+
+        // Получаем ID последней вставленной записи (rabochee_vremya_id)
+        ADOQuery1->Close();
+        ADOQuery1->SQL->Text = "SELECT LAST_INSERT_ID() AS rabochee_vremya_id";
+        ADOQuery1->Open();
+        int rabocheeVremyaID = ADOQuery1->FieldByName("rabochee_vremya_id")->AsInteger;
+
+        // Добавляем связь в таблицу sot_rab_vremya
+        ADOQuery1->Close();
+        ADOQuery1->SQL->Text = "INSERT INTO sot_rab_vremya (sotrudnuk_id_sotrudnik, rabochee_vremya_id) VALUES (" +
+                               IntToStr(sotrudnikID) + ", " + IntToStr(rabocheeVremyaID) + ")";
+        ADOQuery1->ExecSQL();
+
+        ShowMessage("Данные успешно сохранены!");
     }
+    catch (const Exception &e) {
+        ShowMessage("Ошибка: " + e.Message);
+    }	
 }
 //---------------------------------------------------------------------------
 
