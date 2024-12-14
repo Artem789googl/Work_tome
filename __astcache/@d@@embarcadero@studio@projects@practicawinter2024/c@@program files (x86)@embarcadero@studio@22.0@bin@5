@@ -1,0 +1,35 @@
+//---------------------------------------------------------------------------
+
+#ifndef Unit2H
+#define Unit2H
+//---------------------------------------------------------------------------
+#include <System.Classes.hpp>
+#include <Vcl.Controls.hpp>
+#include <Vcl.StdCtrls.hpp>
+#include <Vcl.Forms.hpp>
+#include <Data.DB.hpp>
+#include <Data.Win.ADODB.hpp>
+//---------------------------------------------------------------------------
+class TForm2 : public TForm
+{
+__published:	// IDE-managed Components
+	TADOConnection *ADOConnection1;
+	TDataSource *DataSource1;
+	TADOTable *ADOT_employee;
+	TAutoIncField *ADOT_employeeid_sotrudnik;
+	TStringField *ADOT_employeefamiliya;
+	TStringField *ADOT_employeeimya;
+	TStringField *ADOT_employeeotchestvo;
+	TDateField *ADOT_employeedata_nachalo_raboty;
+	TIntegerField *ADOT_employeedolzhnost_id_dolzhnost;
+	TADOTable *ADOT_dolzhnost;
+	TStringField *ADOT_dolzhnostnazvanie;
+	void __fastcall FormCreate(TObject *Sender);
+private:	// User declarations
+public:		// User declarations
+	__fastcall TForm2(TComponent* Owner);
+};
+//---------------------------------------------------------------------------
+extern PACKAGE TForm2 *Form2;
+//---------------------------------------------------------------------------
+#endif
