@@ -1,0 +1,57 @@
+//---------------------------------------------------------------------------
+
+#ifndef Unit4H
+#define Unit4H
+//---------------------------------------------------------------------------
+#include <System.Classes.hpp>
+#include <Vcl.Controls.hpp>
+#include <Vcl.StdCtrls.hpp>
+#include <Vcl.Forms.hpp>
+#include <Vcl.Grids.hpp>
+#include <DateUtils.hpp>
+#include <Vcl.WinXCalendars.hpp>
+#include <Vcl.ComCtrls.hpp>
+#include <Vcl.ExtCtrls.hpp>
+#include <SysUtils.hpp>
+#include <Vcl.Dialogs.hpp>
+#include <Vcl.Menus.hpp>
+#include <vector>
+#include <vcl.h>
+#include <ComObj.hpp>
+#include <Dialogs.hpp>
+
+#pragma hdrstop
+//---------------------------------------------------------------------------
+class TOtchetForm : public TForm
+{
+__published:	// IDE-managed Components
+	TStringGrid *Table;
+	TButton *Button1;
+	TButton *Button2;
+	TDateTimePicker *DateTimePicker1;
+	TRadioGroup *RadioGroup1;
+	TEdit *SearchFam_Edit;
+	TLabel *Label18;
+	TSaveDialog *SaveDialog1;
+	TMainMenu *MainMenu1;
+	TMenuItem *N1;
+	TMenuItem *N2;
+	TMenuItem *Word1;
+	void __fastcall Button2Click(TObject *Sender);
+	void __fastcall Button1Click(TObject *Sender);
+	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
+	void __fastcall TableMouseDown(TObject *Sender, TMouseButton Button, TShiftState Shift,
+          int X, int Y);
+	void __fastcall Button3Click(TObject *Sender);
+	void __fastcall SearchFam_EditChange(TObject *Sender);
+	void __fastcall Word1Click(TObject *Sender);
+	void __fastcall N2Click(TObject *Sender);
+private:	// User declarations
+    bool IsFormed = false;
+public:		// User declarations
+	__fastcall TOtchetForm(TComponent* Owner);
+};
+//---------------------------------------------------------------------------
+extern PACKAGE TOtchetForm *OtchetForm;
+//---------------------------------------------------------------------------
+#endif

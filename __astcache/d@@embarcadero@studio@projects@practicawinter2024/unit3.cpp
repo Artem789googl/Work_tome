@@ -1,0 +1,45 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+#include "Unit1.h"
+#include "Unit2.h"
+#include "Unit3.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TDateForm *DateForm;
+//---------------------------------------------------------------------------
+__fastcall TDateForm::TDateForm(TComponent* Owner)
+	: TForm(Owner)
+{
+}
+//---------------------------------------------------------------------------
+void __fastcall TDateForm::ComboBox1Change(TObject *Sender)
+{
+	EditForm->ADOQuery1->Close();
+	String str = ComboBox1->Text;
+	if (str == "Должность")
+		EditForm->ADOQuery1->SQL->Text = "Select * from dolzhnost";
+	else if (str == "Сотрудник")
+		EditForm->ADOQuery1->SQL->Text = "Select * from sotrudnuk";
+	else if (str == "Рабочее время")
+		EditForm->ADOQuery1->SQL->Text = "Select * from rabochee_vremya";
+	else if (str == "Рабочее время сотрудника")
+		EditForm->ADOQuery1->SQL->Text = "Select * from sot_rab_vremya";
+	else ShowMessage("Нет такой базы данных");
+	EditForm->ADOQuery1->Open();
+	DataSource1->DataSet = EditForm->ADOQuery1;
+}
+//---------------------------------------------------------------------------
+void __fastcall TDateForm::Button1Click(TObject *Sender)
+{
+	MainForm->Show();
+	this->Hide();
+}
+//---------------------------------------------------------------------------
+void __fastcall TDateForm::FormClose(TObject *Sender, TCloseAction &Action)
+{
+	Application->Terminate();
+}
+//---------------------------------------------------------------------------

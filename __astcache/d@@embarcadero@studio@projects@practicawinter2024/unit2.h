@@ -73,6 +73,8 @@ __published:	// IDE-managed Components
 	TLabel *Label16;
 	TLabel *Label17;
 	TButton *SaveDate_Button;
+	TLabel *Label18;
+	TEdit *SearchFam_Edit;
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall FormDestroy(TObject *Sender);
 	void __fastcall ComboBox1Change(TObject *Sender);
@@ -93,6 +95,9 @@ __published:	// IDE-managed Components
 	void __fastcall Imya_ComboBoxChange(TObject *Sender);
 	void __fastcall Date_ComboBoxChange(TObject *Sender);
 	void __fastcall SaveDate_ButtonClick(TObject *Sender);
+	void __fastcall TabSheet1Show(TObject *Sender);
+	void __fastcall SearchFam_EditChange(TObject *Sender);
+
 private:	// User declarations
         TDateTime StartDate;
     	TDateTime EndDate;
